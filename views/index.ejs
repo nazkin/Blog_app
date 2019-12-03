@@ -5,8 +5,10 @@
 <div>
     <h2><%= blog.title %></h2>
     <img src="<%= blog.image %>" height="350px" width="auto">
-    <h4><%= blog.body %></h4>
+    <h4><%= blog.body.substring(0,75) %>...</h4>
+    <a href="/blogs/<%=blog._id%>">Read More</a>
     <span><%= blog.created %></span>
+    
 </div>
 <% }) %>
 
