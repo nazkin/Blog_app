@@ -1,0 +1,13 @@
+<%- include("partials/header") %>
+
+<h1>HomePage of my Blog</h1>
+<% blogs.forEach(function(blog) { %>
+<div>
+    <h2><%= blog.title %></h2>
+    <img src="<%= blog.image %>" height="350px" width="auto">
+    <h4><%= blog.body %></h4>
+    <span><%= blog.created %></span>
+</div>
+<% }) %>
+
+<%- include("partials/footer") %>
