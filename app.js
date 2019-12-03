@@ -38,13 +38,22 @@ app.get("/blogs",function(req,res) {
     });
     
 });
-    //Title
-
-    //Image
-
-    //Body 
-
-    //Created
+//NEW PAGE
+app.get("/blogs/new", function(req,res){
+    res.render("new");
+});
+//ADD BLOG INPUT
+app.post("/blogs", function(req,res){
+    //create form , post data
+    Blog.create(req.body.blog, function(err, newblog){
+        if(err){
+            console.log("error: cant add the blog");
+        }else{
+            res.redirect("/blogs");
+        }
+    })
+    //redirect
+});
 
 //______________________________________________________________________________________>>>>
     app.listen(port, function(){
