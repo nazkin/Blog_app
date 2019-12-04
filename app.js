@@ -90,6 +90,19 @@ app.put("/blogs/:id", function(req,res){
         }
     });
 });
+//DELETE/DESTROY ROUTE
+app.delete(`/blogs/:id`, function(req,res){
+   //Destroy blog 
+    Blog.findByIdAndRemove(req.params.id, function(err, blodDelete){
+        if(err){
+            console.log("Error: Can't delete the blog");
+            res.redirect(`/blogs/${req.params.id}`);
+        } else {
+            res.redirect(`/blogs`);
+        }
+    });
+   //Redirect to blogs page
+});
 //************************************************************************************ 
 //______________________________________________________________________________________>>>>
  app.listen(port, function(){

@@ -4,3 +4,22 @@ i.icon {
 .container.main{
     margin-top: 5.0em;
 }
+.description{
+    font-family: 'Antic Slab', serif;
+    background: linear-gradient(to bottom, white, whitesmoke);
+}
+
+#edit-but{
+    margin-top: 1.0em;
+    margin-bottom:1.0em;
+}
+#date{
+    color: silver;
+    font-weight: 200;
+    font-style: italic;
+}
+#show-image{
+    border: 2px double gray;
+    margin-top: 1.0em;
+    margin-bottom:1.0em;
+}
