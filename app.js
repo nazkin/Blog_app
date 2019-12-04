@@ -6,6 +6,7 @@ app             = express(),
 port            = 3000;
 //APP CONFIGURATION
 mongoose.connect("mongodb://localhost:27017/blog_app", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.set('useFindAndModify', false);
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -68,15 +69,29 @@ app.get("/blogs/:id", function(req, res){
     
 });
 //EDIT ROUTE ***************************************************************
-app.get("blogs/:id/edit", function(req,res){
-    res.send("Edit Blog Here");
+app.get("/blogs/:id/edit", function(req,res){
+    Blog.findById(req.params.id, function(err,foundBlog){
+        if(err){
+            console.log("err: cant locate item in database");
+            res.redirect("/blogs");
+        } else {
+            res.render("edit",{blog: foundBlog});      
+        }
+    });
 });
 //UPDATE ROUTE THROUGH A PUT REQUEST
-app.put("blogs/:id", function(req,res){
-    res.redirect("/blogs");
+app.put("/blogs/:id", function(req,res){
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err,updBlog){
+        if(err){
+            console.log("Error: Couldnt update file");
+            res.redirect("/blogs");
+        } else {
+            res.redirect(`/blogs/${req.params.id}`);
+        }
+    });
 });
 //************************************************************************************ 
 //______________________________________________________________________________________>>>>
-    app.listen(port, function(){
-        console.log(`Server is listening on port ${port}`);
-    });
+ app.listen(port, function(){
+     console.log(`Server is listening on port ${port}`);
+ });

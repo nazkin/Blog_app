@@ -1,0 +1,30 @@
+<%- include("partials/header") %>
+<!-- Changes to be made
+1)We need to use the correct id extracted 
+2)We need to prefill the form using this id -->
+
+<div class="ui main text container segment">
+    <div class="ui huge header">Edit BlogMe</div>
+    <form class="ui form" action="/blogs/<%= blog._id %>?_method=PUT" method="POST">
+        <div class="field">
+            <label>Title:</label>
+            <input type="text" name="blog[title]" value="<%= blog.title%>">
+        </div>
+        <div class="field">
+            <label>Image:</label>
+            <input type="text" name="blog[image]" value="<%= blog.image%>">
+        </div>
+        <div class="field">
+            <label>Body:</label>
+            <textarea name="blog[body]"><%= blog.body%></textarea>
+        </div> 
+        <input class="ui orange basic button" type="submit">
+    </form>
+</div>
+
+
+
+
+
+
+<%- include("partials/footer") %>
