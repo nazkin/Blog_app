@@ -1,15 +1,17 @@
-var express     = require("express"),
-mongoose        = require("mongoose"),
-bodyParser      = require("body-parser"),
-methodOverride  = require("method-override"),
-app             = express(),
-port            = 3000;
+var express         = require("express"),
+expressSanitizer    = require("express-sanitizer");
+mongoose            = require("mongoose"),
+bodyParser          = require("body-parser"),
+methodOverride      = require("method-override"),
+app                 = express(),
+port                = 3000;
 //APP CONFIGURATION
 mongoose.connect("mongodb://localhost:27017/blog_app", {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useFindAndModify', false);
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(expressSanitizer()); //MUST BE USED AFTER BODY PARSER BY THE APP
 app.use(methodOverride("_method"));
 //MONGOOSE CONFIGURATION
 var blogSchema = new mongoose.Schema({
@@ -47,6 +49,7 @@ app.get("/blogs/new", function(req,res){
 });
 //ADD BLOG INPUT
 app.post("/blogs", function(req,res){
+    req.body.blog.body = req.sanitize(req.body.blog.body);//Make sure no <script> tags are added when adding a post
     //create form , post data
     Blog.create(req.body.blog, function(err, newblog){
         if(err){
@@ -81,6 +84,8 @@ app.get("/blogs/:id/edit", function(req,res){
 });
 //UPDATE ROUTE THROUGH A PUT REQUEST
 app.put("/blogs/:id", function(req,res){
+    req.body.blog.body = req.sanitize(req.body.blog.body);//Make sure no<SCRIPT> tags are entered when updating a blog
+    
     Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err,updBlog){
         if(err){
             console.log("Error: Couldnt update file");

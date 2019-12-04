@@ -6,7 +6,7 @@
             <img id="show-image" class="ui centered rounded image" src="<%= blog.image %>" height="350px" width="auto">
             <a href="/blogs">Return to Collection</a>
             <div class="content">
-                <span id="date"><%= blog.created.toDateString() %></span>
+                <span class="date-view"><%= blog.created.toDateString() %></span>
             </div>
             <div class="description">
                 <%= blog.body %>

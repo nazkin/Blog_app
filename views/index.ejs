@@ -1,15 +1,23 @@
 <%- include("partials/header") %>
 
-<h1>HomePage of my Blog</h1>
+<div class="ui main text container segment">
+    <div id="title" class="ui huge header">
+        <i class="dna icon"></i>
+        Explore Molecular Biology Articles
+    </div>
 <% blogs.forEach(function(blog) { %>
-<div>
-    <h2><%= blog.title %></h2>
-    <img src="<%= blog.image %>" height="350px" width="auto">
-    <h4><%= blog.body.substring(0,75) %>...</h4>
-    <a href="/blogs/<%=blog._id%>">Read More</a>
-    <span><%= blog.created %></span>
-    
-</div>
-<% }) %>
 
+    
+    <div id="headers" class="ui huge header"><%= blog.title%><span class="date-view"><%= blog.created.toDateString() %></span></div>
+    
+    <img id="index-img" class="ui centered rounded image" src="<%= blog.image %>" height="200px" width="auto">
+    <div class="description">
+        <%= blog.body.substring(0,75) %>
+    </div> 
+    <a href="/blogs/<%=blog._id%>">Read More</a>
+    <hr>
+    
+
+<% }) %>
+</div>
 <%- include("partials/footer") %>

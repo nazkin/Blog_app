@@ -1,25 +1,49 @@
+body{
+    background: snow;
+    
+}
 i.icon {
     font-size: 1.7em;
 }
 .container.main{
     margin-top: 5.0em;
+    background: ghostwhite;
 }
 .description{
     font-family: 'Antic Slab', serif;
     background: linear-gradient(to bottom, white, whitesmoke);
+    font-size: 18px;
+    margin-top: 1.0em;
 }
 
 #edit-but{
     margin-top: 1.0em;
     margin-bottom:1.0em;
 }
-#date{
+#headers{
+    font-family: 'Rubik', sans-serif;
+    background: linear-gradient(to bottom, white, snow );
+}
+
+.date-view{
     color: silver;
     font-weight: 200;
     font-style: italic;
+    font-size: 17px;
+    margin-left: 1em;
 }
 #show-image{
     border: 2px double gray;
     margin-top: 1.0em;
     margin-bottom:1.0em;
+}
+#index-img{
+    border: 1px double darkslategray;
+}
+#title{
+    color: olivedrab;
+    border: 2px solid olive;
+    padding: 2rem;
+    text-align: center;
+    background: linear-gradient(to bottom, snow, linen );
 }
